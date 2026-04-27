@@ -1,6 +1,7 @@
 # AuditPasswd
 SecPass é uma ferramenta de linha de comando (CLI) desenvolvida em Python para a geração, auditoria e armazenamento seguro de credenciais. O projeto foca em três pilares fundamentais da segurança da informação: Criptografia Forte, Privacidade de Dados e Análise Matemática de Entropia.
----
+
+
 ## Funcionalidades
 Geração Segura: Utiliza CSPRNG (Gerador de Números Pseudo-Aleatórios Criptograficamente Seguro) para garantir a imprevisibilidade das senhas.
 
@@ -16,11 +17,25 @@ Interface Dual: Modo Interativo (Wizard) para usuários casuais e Prompt de Coma
 ---
 ## Arquitetura de Segurança
 ### Este projeto foi construído seguindo recomendações do NIST e OWASP:
-1. Criptografia e Derivação de ChavePara proteger o cofre (vault.bin), não utilizamos a senha mestre diretamente como chave. Implementamos Key Stretching via PBKDF2 (Password-Based Key Derivation Function 
-2):Algoritmo: HMAC-SHA256.Iterações: 600.000 (superior ao padrão recomendado para mitigar ataques de força bruta offline).Salt: 16 bytes aleatórios gerados por os.urandom para cada registro, impedindo ataques de Rainbow Tables.
-2. Privacidade e K-AnonymityAo verificar se uma senha vazou, o SecPass utiliza o protocolo de K-Anonymity. Apenas os 5 primeiros caracteres do hash SHA-1 são enviados à API. O confronto final do hash completo é feito localmente, garantindo que o servidor remoto nunca saiba qual senha está sendo consultada.
-3. Entropia de ShannonA força da senha é calculada com base no espaço de busca ($R$) e comprimento ($L$):$$H = L \cdot \log_2(R)$$Isso fornece uma métrica objetiva da dificuldade teórica de quebra da credencial.
----
+1. Criptografia e Derivação de Chave
+Para proteger o cofre (vault.bin), não utilizamos a senha mestre diretamente como chave. Implementamos Key Stretching via PBKDF2 (Password-Based Key Derivation Function 2):
+
+Algoritmo: HMAC-SHA256.
+
+Iterações: 600.000 (superior ao padrão recomendado para mitigar ataques de força bruta offline).
+
+Salt: 16 bytes aleatórios gerados por os.urandom para cada registro, impedindo ataques de Rainbow Tables.
+
+2. Privacidade e K-Anonymity
+Ao verificar se uma senha vazou, o SecPass utiliza o protocolo de K-Anonymity. Apenas os 5 primeiros caracteres do hash SHA-1 são enviados à API. O confronto final do hash completo é feito localmente, garantindo que o servidor remoto nunca saiba qual senha está sendo consultada.
+
+3. Entropia de Shannon
+A força da senha é calculada com base no espaço de busca (R) e comprimento (L), utilizando a fórmula:
+H = L * log2(R)
+
+Isso fornece uma métrica objetiva da dificuldade teórica de quebra da credencial em bits de entropia.
+
+   
 # Instalação
 ### Clonando o repositório:
 git clone https://github.com/Guiswer/AuditPasswd
@@ -30,7 +45,8 @@ pip install -r requirements.txt
 
 ### Depois das instalações, execute o main.py com o python.
 Exemplo: python{versão} main.py
----
+
+
 ### Comandos do modo manual:
 -g [Extenso: --generate]: Gera uma nova senha.
 -l [Extenso: --length]: Define o comprimento para 32 caracteres.
