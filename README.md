@@ -48,16 +48,19 @@ SecPass é uma ferramenta de linha de comando (CLI) desenvolvida em Python para 
 
 
 ### Comandos do modo manual:
-#### -g [Extenso: --generate]: Gera uma nova senha.
-#### -l [Extenso: --length]: Define o comprimento para 32 caracteres.
-#### -a [Extenso: --audit]: Realiza a auditoria de vazamento.
-#### -s [Extenso: --save]: Salva a senha no cofre.
-#### -r [Extenso: --retrieve]: Recupera e descriptografa as senhas do cofre.
+```bash
+-g [Extenso: --generate]: Gera uma nova senha.
+-l [Extenso: --length]: Define o comprimento para 32 caracteres.
+-a [Extenso: --audit]: Realiza a auditoria de vazamento.
+-s [Extenso: --save]: Salva a senha no cofre.
+-r [Extenso: --retrieve]: Recupera e descriptografa as senhas do cofre.
+```
 
 ### Exemplo de comando encadeado:
-#### [>] Comando: -g -a -s -l 24
-#### [>] Comando extenso: --generate --audit --save --length 24
-#### [>] Comando mescla: -g --audit --save -l 24
+```bash [>] Comando: -g -a -s -l 24
+[>] Comando extenso: --generate --audit --save --length 24
+[>] Comando mescla: -g --audit --save -l 24
+```
 
 ### Utilizar na ordem:
 #### Gerar -> Auditar -> Salvar -> Comprimento
