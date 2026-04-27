@@ -4,8 +4,10 @@ import math
 
 def calculate_entropy(password):
     """
-    Calcula a entropia da senha: $$H = L \cdot \log_2(R)$$
-    Mede a resistência teórica a ataques de força bruta.
+    Calculates the Shannon entropy of the password.
+    
+    Formula: $$H = L \cdot \log_2(R)$$
+    Measures the theoretical resistance against offline brute-force attacks.
     """
     if not password:
         return 0
@@ -23,8 +25,8 @@ def calculate_entropy(password):
 
 def generate_random_password(length=24):
     """
-    Gera strings aleatórias usando o CSPRNG (Cryptographically 
-    Secure Pseudo-Random Number Generator) do Sistema Operacional.
+    Generates random strings using the Operating System's 
+    CSPRNG (Cryptographically Secure Pseudo-Random Number Generator).
     """
     alphabet = string.ascii_letters + string.digits + string.punctuation
     return ''.join(secrets.choice(alphabet) for _ in range(length))
